@@ -80,7 +80,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        /*heckCollisions(allEnemies, player);*/
+        /*checkCollisions(allEnemies, player);*/
     }
 
     /* This is called by the update function  and loops through all of the
@@ -96,7 +96,11 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-      player.update();
+        player.update();
+        allFoods.forEach(function(food) {
+            food.update(dt);
+        });
+     
     }
 
     /* This function initially draws the "game level", it will then call
@@ -109,22 +113,30 @@ var Engine = (function(global) {
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.
          */
+     
+         renderOneImages()
         var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
+               /* 'images/water.png',   // Top row is water*/
+                'images/grass.png',   // Row 1 of 4 of stone
+                'images/grass.png',   // Row 2 of 4 of stone
+                'images/grass.png',   // Row 3 of 4 of stone
+                'images/grass.png',   // Row 4 of 4 of stone
+                'images/grass.png'   // Row 4 of 4 of stone
+                /*'images/mud.png',   // Row 1 of 2 of grass
+                'images/mud.png'    // Row 2 of 2 of grass*/
             ],
-            numRows = 6,
-            numCols = 5,
+
+        
+            numRows = 5,
+            numCols = 4,
             row, col;
 
         /* Loop through the number of rows and columns we've defined above
          * and, using the rowImages array, draw the correct image for that
          * portion of the "grid"
          */
+
+         
         for (row = 0; row < numRows; row++) {
             for (col = 0; col < numCols; col++) {
                 /* The drawImage function of the canvas' context element
@@ -134,15 +146,81 @@ var Engine = (function(global) {
                  * so that we get the benefits of caching these images, since
                  * we're using them over and over.
                  */
-                ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
+
+                ctx.drawImage(Resources.get(rowImages[row]),0,80,col * 251, row * 100);
             }
         }
-
-
+        
+        renderTwoImages()
         renderEntities();
 
     }
 
+
+
+function renderOneImages() {
+        var rowOneImages = [
+                'images/water.png',   // Top row is water
+                'images/mud.png'
+            ],
+
+        
+            numRows = 2,
+            numCols = 1,
+            row, col;
+
+        /* Loop through the number of rows and columns we've defined above
+         * and, using the rowImages array, draw the correct image for that
+         * portion of the "grid"
+         */
+
+         
+        for (row = 0; row < numRows; row++) {
+            for (col = 0; col < numCols; col++) {
+                /* The drawImage function of the canvas' context element
+                 * requires 3 parameters: the image to draw, the x coordinate
+                 * to start drawing and the y coordinate to start drawing.
+                 * We're using our Resources helpers to refer to our images
+                 * so that we get the benefits of caching these images, since
+                 * we're using them over and over.
+                 */
+                ctx.drawImage(Resources.get(rowOneImages[row]), 0, 40, 550, 80);
+            }
+        }
+        
+    }
+
+    function renderTwoImages() {
+        var rowTwoImages = [
+            'images/mud.png',   // Row 1 of 2 of grass
+            'images/mud.png'    // Row 2 of 2 of grass
+            ],
+
+        
+            numRows = 2,
+            numCols = 1,
+            row, col;
+
+        /* Loop through the number of rows and columns we've defined above
+         * and, using the rowImages array, draw the correct image for that
+         * portion of the "grid"
+         */
+
+         
+        for (row = 0; row < numRows; row++) {
+            for (col = 0; col < numCols; col++) {
+                /* The drawImage function of the canvas' context element
+                 * requires 3 parameters: the image to draw, the x coordinate
+                 * to start drawing and the y coordinate to start drawing.
+                 * We're using our Resources helpers to refer to our images
+                 * so that we get the benefits of caching these images, since
+                 * we're using them over and over.
+                 */
+                ctx.drawImage(Resources.get(rowTwoImages[row]), 0,400 , 580, 180);
+            }
+        }
+        
+    }
     /* This function is called by the render function and is called on each game
      * tick. It's purpose is to then call the render functions you have defined
      * on your enemy and player entities within app.js
@@ -155,8 +233,11 @@ var Engine = (function(global) {
             enemy.render();
         });
 
-       player.render();
-    }
+        player.render();
+        allFoods.forEach(function(food) {
+            food.render();
+          });
+     }
 
     /* This function does nothing but it could have been a good place to
      * handle game reset states - maybe a new game menu or a game over screen
@@ -176,9 +257,13 @@ var Engine = (function(global) {
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/char-cat-girl.png',
-        'images/char-horn-girl.png',
-        'images/char-pink-girl.png',
+        'images/frog.png',
+        'images/bee.png',
+        'images/lizard.png',
+        'images/grass.png',
+        'images/mud.png',
+        'images/water.png',
+        'images/sprites.png',
         'images/char-princess-girl.png'
     ]);
     Resources.onReady(init);

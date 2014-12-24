@@ -2,7 +2,7 @@
 
 
 var enemyPosY = [65, 145, 267];
-var enemySpeed = [100, 450, 600, 200, 250, 300, 400];
+var enemySpeed = [60, 325, 600, 200, 250, 100, 400];
 
 
 var Enemy = function() {
@@ -13,8 +13,8 @@ var Enemy = function() {
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
-    this.x = -100;
+    this.sprite = 'images/lizard.png';
+    this.x = -300;
     this.y = enemyPosY[Math.floor(Math.random() * 3)];
     this.speed = enemySpeed[Math.floor(Math.random() * 7)];;
 }
@@ -26,7 +26,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
         if (this.x > 600) {
-        this.x = -100;
+        this.x = -300;
         this.y = enemyPosY[Math.floor(Math.random() * 3)];
     //--activates enemy instances by incrementing their x positions by a randomly determined speed--
     } else {
@@ -57,6 +57,65 @@ function createEnemies(number) {
 }
 createEnemies(6);
 
+var foodPosY = [65, 145, 267];
+var foodSpeed = [50, 450, 500, 100, 250, 300, 400];
+
+
+var Food = function() {
+    // Variables applied to each of our instances go here,
+    // we've provided one for you to get started
+
+
+
+    // The image/sprite for our enemies, this uses
+    // a helper we've provided to easily load images
+    this.sprite = 'images/bee.png';
+    this.x =520;
+    this.y = foodPosY[Math.floor(Math.random() * 3)];
+    this.speed = foodSpeed[Math.floor(Math.random() * 7)];;
+}
+
+// Update the enemy's position, required method for game
+// Parameter: dt, a time delta between ticks
+Food.prototype.update = function(dt) {
+    // You should multiply any movement by the dt parameter
+    // which will ensure the game runs at the same speed for
+    // all computers.
+        if (this.x >600) {
+        this.x =520;
+        this.y = foodPosY[Math.floor(Math.random() * 3)];
+    //--activates enemy instances by incrementing their x positions by a randomly determined speed--
+    } else {
+        if (this.x < -15){
+            this.x = 520;
+            this.x -=(Math.random() * this.speed + 1) * dt
+        }else{
+        this.x -=(Math.random() * this.speed + 1) * dt;
+    }
+ }
+}
+
+
+//creates instance of enemies
+var numbers 
+var allFoods = [];
+
+
+// Draw the enemy on the screen, required method for game
+Food.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+}
+
+function createFoods(numbers) {
+
+
+    for (var i = 0; i < numbers; i++) {
+        var food = new Food();
+        allFoods.push(food);
+
+    }
+}
+createFoods(6);
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -64,9 +123,10 @@ createEnemies(6);
 
 
 var player = function() {
-  this.sprite = 'images/char-boy.png';
+  this.sprite = 'images/frog.png';
     this.x = 200;
-    this.y = 430;
+    this.y = 455;
+    this.AnimationFrame
 }
 
 
@@ -89,21 +149,27 @@ player.prototype.render = function() {
 
 player.prototype.reset = function() {
   this.x = 200;
-  this.y = 430;
-}
+  this.y = 455;
 
+}
+/*101*/
 player.prototype.handleInput = function(playMove) {
   if (playMove == 'left' && this.x > 0) {
-    this.x -= 101;
+  
+    this.x -= 30;
     }
   else if (playMove == 'right' && this.x < 400) {
-    this.x += 101;
+
+    this.x += 30;
   }
-  else if (playMove == 'up' &&  this.y > 30) {
-    this.y -= 101;
-  }
+  else if (playMove == 'up' &&  this.y -40> 30) {
+   
+    this.y -= 30;
+
+      }
   else if (playMove == 'down' && this.y < 430) {
-    this.y += 101;
+
+    this.y += 30;
   }
 }
 
@@ -121,6 +187,9 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+
+
 // cross-browser request AnimationFrame
 var requestAnimFrame = (function(){
     return window.requestAnimationFrame       ||
