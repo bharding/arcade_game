@@ -25,8 +25,8 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
 
-    canvas.width = 505;
-    canvas.height = 606;
+    canvas.width = 605;
+    canvas.height = 706;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -47,7 +47,9 @@ var Engine = (function(global) {
          */
         update(dt);
         render();
-
+        /*setTime();*/
+       
+              
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
          */
@@ -64,9 +66,13 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
+
+         document.getElementById('play-again').addEventListener('click', function() {
         reset();
+    });
         lastTime = Date.now();
         main();
+
     }
 
     /* This function is called by main (our game loop) and itself calls all
@@ -80,7 +86,8 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        /*checkCollisions(allEnemies, player);*/
+        isColliding(allEnemies, player, allFoods);
+      
     }
 
     /* This is called by the update function  and loops through all of the
@@ -91,6 +98,7 @@ var Engine = (function(global) {
      * render methods.
      */
 
+    
 
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
@@ -102,6 +110,8 @@ var Engine = (function(global) {
         });
      
     }
+    
+    
 
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every
@@ -116,14 +126,13 @@ var Engine = (function(global) {
      
          renderOneImages()
         var rowImages = [
-               /* 'images/water.png',   // Top row is water*/
+             
                 'images/grass.png',   // Row 1 of 4 of stone
                 'images/grass.png',   // Row 2 of 4 of stone
                 'images/grass.png',   // Row 3 of 4 of stone
                 'images/grass.png',   // Row 4 of 4 of stone
                 'images/grass.png'   // Row 4 of 4 of stone
-                /*'images/mud.png',   // Row 1 of 2 of grass
-                'images/mud.png'    // Row 2 of 2 of grass*/
+         
             ],
 
         
@@ -147,7 +156,7 @@ var Engine = (function(global) {
                  * we're using them over and over.
                  */
 
-                ctx.drawImage(Resources.get(rowImages[row]),0,80,col * 251, row * 100);
+                ctx.drawImage(Resources.get(rowImages[row]),0,105,col * 251, row * 100);
             }
         }
         
@@ -161,7 +170,8 @@ var Engine = (function(global) {
 function renderOneImages() {
         var rowOneImages = [
                 'images/water.png',   // Top row is water
-                'images/mud.png'
+                'images/mud.png',
+                
             ],
 
         
@@ -184,7 +194,7 @@ function renderOneImages() {
                  * so that we get the benefits of caching these images, since
                  * we're using them over and over.
                  */
-                ctx.drawImage(Resources.get(rowOneImages[row]), 0, 40, 550, 80);
+                ctx.drawImage(Resources.get(rowOneImages[row]), 0, 40, 650, 180);
             }
         }
         
@@ -216,7 +226,7 @@ function renderOneImages() {
                  * so that we get the benefits of caching these images, since
                  * we're using them over and over.
                  */
-                ctx.drawImage(Resources.get(rowTwoImages[row]), 0,400 , 580, 180);
+                ctx.drawImage(Resources.get(rowTwoImages[row]), 0,400 , 680, 180);
             }
         }
         
@@ -244,7 +254,20 @@ function renderOneImages() {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+ // Reset game to original state
+
+    document.getElementById('game-over').style.display = 'none';
+    document.getElementById('game-over-overlay').style.display = 'none';
+    isGameOver = false;
+    gameTime = 0;
+    meters(myMeter.value = 30);
+    countDown(60,"status");
+    createFoods(6);
+    player.reset();
+    createEnemies(6);
+
+  
+
     }
 
     /* Go ahead and load all of the images we know we're going to need to
