@@ -258,9 +258,12 @@ function renderOneImages() {
 
     document.getElementById('game-over').style.display = 'none';
     document.getElementById('game-over-overlay').style.display = 'none';
+    document.getElementById('game-win').style.display = 'none';
+    document.getElementById('game-win-overlay').style.display = 'none';
     isGameOver = false;
+    isGameWin = false;
     gameTime = 0;
-    meters(myMeter.value = 30);
+    myMeter.value = 30;
     countDown(60,"status");
     createFoods(6);
     player.reset();
@@ -275,9 +278,6 @@ function renderOneImages() {
      * all of these images are properly loaded our game will start.
      */
     Resources.load([
-        'images/stone-block.png',
-        'images/water-block.png',
-        'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
         'images/frog.png',

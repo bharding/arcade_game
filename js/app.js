@@ -61,10 +61,10 @@ function createEnemies(number) {
 }
 createEnemies(6);
 
-var foodPosY = [75, 170, 268];
+var foodPosY = [85, 170, 268];
 var foodSpeed = [50, 450, 500, 100, 250, 300, 400];
 
-
+//food will be eaten by both olayer and enemy
 var Food = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -74,7 +74,7 @@ var Food = function() {
     // The image/sprite for our food, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/bee.png';
-    this.x =520;
+    this.x =600;
     this.y = foodPosY[Math.floor(Math.random() * 3)];
     this.speed = foodSpeed[Math.floor(Math.random() * 7)];;
 }
@@ -86,19 +86,23 @@ Food.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
         if (this.x >600) {
-        this.x =520;
+        this.x =600;
         this.y = foodPosY[Math.floor(Math.random() * 3)];
     //--activates food instances by incrementing their x positions by a randomly determined speed--
     } else {
         if (this.x < -15){
-            this.x = 520;
+            this.x = 600;
             this.x -=(Math.random() * this.speed + 1) * dt
         }else{
         this.x -=(Math.random() * this.speed + 1) * dt;
     }
  }
 }
-
+Food.prototype.reset = function(){
+    this.x = -600;
+    this.y = foodPosY[Math.floor(Math.random() * 3)];
+    this.speed = foodSpeed[Math.floor(Math.random() * 7)];;
+}
 
 //creates instance of food(bees)
 var numbers 
@@ -232,19 +236,18 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-
-var v;
-   var eat;
-   var d;
-   var meterm;
-/* manipulates the Meter bar; the goal is to fill the meter bar to 100%,  meter bar is adjusted by collision detection (isColliding) */   
+ var v=0;  // points when enemy eats player minus 8 from meter bar based on collision detection
+  var eat=0; // point when enemy eats each food minus 2 from meter bar based on collision detection
+  var d=0; // point when player  eats each food add 9  to meter bar based on collision detection
+  var meterm
+ /* The lifeline of the player, manipulates the Meter bar; the goal is to fill the meter bar to 100%,  meter bar is adjusted by collision detection (isColliding) */   
 function meters(){
     var meter = document.getElementById('myMeter');
      
     var timer = setInterval(function(){
          isColliding();
-            meterm = 1+ (d) - (eat +v)
-           meter.value = meter.value*1 + meterm;
+            meterm = d - (1+eat +v)
+           meter.value = meter.value*1+ meterm;
              v =0;
              eat =0;
              d =0; 
@@ -253,30 +256,33 @@ function meters(){
             gameOver();
             
             clearInterval(timer);}
-       if (meter.value==100)
-            clearInterval(timer);
+       if (meter.value>100){
+            gameWin()
+            clearInterval(timer);}
+
     }, 1000)
 };
 meters();
 
-
-function countDown(secs, elem){
+// timer count down games  ends after 60 seconds 
+function countDown(secs, elem, myMeter){
   var element = document.getElementById(elem);
+  var meter = document.getElementById('myMeter');
   element.innerHTML= "You have " + secs + " seconds";
-  if (secs <1){
+
+  if (secs <1 || meter.value<= meter.min){
             
             return gameOver();
-            clearTimeout(timer);
-  }
+             clearTimeout(timer);     
+  };
+
 secs--;
 var timer = setTimeout('countDown('+secs+' ,"'+elem+'")', 1000);
 }
-countDown(60,"status");
+countDown(60,"status", myMeter);
+
 /*  determines if there is collision between enemy and player -meter bar decrease by 8, enemy and food(bees)  decreases meter bar by 2 and player and food(flies)  increases the meter by 9*/
 function isColliding(enemy, player, food) {
- 
-
-    
 
     for(var i in enemy){
        
@@ -287,30 +293,54 @@ function isColliding(enemy, player, food) {
          
       } 
     else
-    for(var t in food){
-    if ((enemy[i].x  - food[t].x  < 40 )&& (enemy[i].y  - food[t].y < 40) && (enemy[i].x - food[t].x > -20 )&& (enemy[i].y - food[t].y > -20) ){  
-      eat = 2;
-      
+
+    for(var t  = 0; t < food.length; t++){
+
+    if ((enemy[i].x  - food[t].x  < 30 )&& (enemy[i].y  - food[t].y < 10) && (enemy[i].x - food[t].x > -20 )&& (enemy[i].y - food[t].y > -20) ){  
+     
+           eat = 2;
+           food.splice(food[t],1);  
+
      }
     else
     if ((player.x  - food[t].x  < 40 )&& (player.y  - food[t].y < 40) && (player.x - food[t].x > -40 )&& (player.y - food[t].y > -20) ){  
       d =9;
+            food.splice(food[t],1);  
+           if (food.length <3){
+              createFoods(6);
+               }
 
 }
+ if (food.length < 1){
+                gameOver();
 
+  
+  }
  }
   }
-}
 
+
+}
 // Game over
 function gameOver() {
     document.getElementById('game-over').style.display = 'block';
     document.getElementById('game-over-overlay').style.display = 'block';
+
     isGameOver = true;
     allEnemies=[];
-    allFoods=[]
+    allFoods=[];
+  
 }
-
+// Game Win
+function gameWin() {
+    document.getElementById('game-win').style.display = 'block';
+    document.getElementById('game-win-overlay').style.display = 'block';
+    isGameWin = true;
+    allEnemies=[];
+    allFoods=[]
+     
+ 
+}
 
 
 

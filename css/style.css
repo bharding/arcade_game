@@ -53,3 +53,35 @@ body {
   width: 200px;
   height: 40px;
 }
+#game-win, #game-win-overlay {
+    margin: auto;
+    width: 910px;
+    height: 706px;
+    position: absolute;
+    top: 0;
+    left: 299px;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: none;
+}
+
+#game-win-overlay {
+    background-color: black;
+    opacity: .5;
+}
+
+#game-win {
+    height: 200px;
+    text-align: center;
+    color: white;
+}
+
+#game-win h1 {
+    font-size: 3em;
+    font-family: sans-serif;
+}
+
+#game-win button {
+    font-size: 1.5em;
+}
