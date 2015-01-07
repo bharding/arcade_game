@@ -1,6 +1,9 @@
 // Enemies our player must avoidvar enemyPosY = [60, 143, 226];
 
-
+var gover= new Audio("sounds/game-over.wav"),
+        lbite =new Audio("sounds/monster-bite.wav"),
+        plyerres =new Audio("sounds/player-reset.wav"),
+        plyerbit = new Audio("sounds/player-bite.wav");
 var enemyPosY = [65, 145, 267];
 var enemySpeed = [60, 325, 600, 200, 250, 100, 400];
 var playerS ='images/sprites.png'
@@ -32,7 +35,7 @@ Enemy.prototype.update = function(dt) {
     } else {
         this.x += (Math.random() * this.speed + 1) * dt;
     }
- 
+
 }
 Enemy.prototype.reset = function(){
     this.x = -300;
@@ -41,7 +44,7 @@ Enemy.prototype.reset = function(){
 }
 
 //creates instance of enemies
-var number 
+var number
 var allEnemies = [];
 
 
@@ -105,7 +108,7 @@ Food.prototype.reset = function(){
 }
 
 //creates instance of food(bees)
-var numbers 
+var numbers
 var allFoods = [];
 
 
@@ -138,7 +141,7 @@ var player = function() {
     this.playerH = 78;
     this.playerX= 1;
     this.playerY =0;
-    
+
 }
 
 
@@ -159,7 +162,7 @@ player.prototype.render = function() {
 
 
         ctx.drawImage(Resources.get(this.sprite),this.playerX, this.playerY, this.playerW, this.playerH, this.x, this.y, this.playerW, this.playerH)
-    
+
 }
 
 player.prototype.reset = function() {
@@ -174,37 +177,37 @@ player.prototype.handleInput = function(playMove) {
 
 
   if (playMove == 'left' && this.x > 0) {
-       
+
       this.playerX = 299;
       this.playerY =0;
       this.x -= 30;
-        
+
 
     }
   else if (playMove == 'right' && this.x < 530) {
 
-     
+
      this.playerX = 102;
      this.playerY =0;
      this.x += 30;
-       
+
   }
 
 
     else if (playMove == 'up' &&  this.y -40> 30) {
-         
+
         this.playerX = 1;
         this.playerY =0;
         this.y -= 30;
-      
+
 
       }
   else if (playMove == 'down' && this.y < 430) {
 
-   
+
     this.playerX = 201;
     this.playerY =0;
-    this.y += 30; 
+    this.y += 30;
 
 
   }
@@ -228,7 +231,7 @@ document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',
-        39: 'right', 
+        39: 'right',
         40: 'down',
 
     };
@@ -239,24 +242,28 @@ document.addEventListener('keyup', function(e) {
  var v=0;  // points when enemy eats player minus 8 from meter bar based on collision detection
   var eat=0; // point when enemy eats each food minus 2 from meter bar based on collision detection
   var d=0; // point when player  eats each food add 9  to meter bar based on collision detection
-  var meterm
- /* The lifeline of the player, manipulates the Meter bar; the goal is to fill the meter bar to 100%,  meter bar is adjusted by collision detection (isColliding) */   
+  var meterm;
+  var timer;
+  var timers;
+ /* The lifeline of the player, manipulates the Meter bar; the goal is to fill the meter bar to 100%,  meter bar is adjusted by collision detection (isColliding) */
 function meters(){
     var meter = document.getElementById('myMeter');
-     
+     var element = document.getElementById(status);
     var timer = setInterval(function(){
          isColliding();
-            meterm = d - (1+eat +v)
+            meterm = d - (eat +v)
            meter.value = meter.value*1+ meterm;
              v =0;
              eat =0;
-             d =0; 
-             meterm;  
+             d =0;
+             meterm;
         if(meter.value <= meter.min) {
+            var w = "OUT OF ENERGY";
+          document.getElementById("mymsg").value = w;
             gameOver();
-            
+            clearTimeout(timers);
             clearInterval(timer);}
-       if (meter.value>100){
+       if (meter.value>99){
             gameWin()
             clearInterval(timer);}
 
@@ -264,20 +271,22 @@ function meters(){
 };
 meters();
 
-// timer count down games  ends after 60 seconds 
+// timer count down games  ends after 60 seconds
 function countDown(secs, elem, myMeter){
   var element = document.getElementById(elem);
   var meter = document.getElementById('myMeter');
   element.innerHTML= "You have " + secs + " seconds";
 
-  if (secs <1 || meter.value<= meter.min){
-            
+  if (secs <1){
+          var w = "TOO SLOW";
+          document.getElementById("mymsg").value = w;
             return gameOver();
-             clearTimeout(timer);     
+             clearInterval(timer)
+             clearTimeout(timers);
   };
 
 secs--;
-var timer = setTimeout('countDown('+secs+' ,"'+elem+'")', 1000);
+var timers = setTimeout('countDown('+secs+' ,"'+elem+'")', 1000);
 }
 countDown(60,"status", myMeter);
 
@@ -285,61 +294,69 @@ countDown(60,"status", myMeter);
 function isColliding(enemy, player, food) {
 
     for(var i in enemy){
-       
+
     if ((player.x  - enemy[i].x  < 80 )&& (player.y  - enemy[i].y < 80) && (player.x - enemy[i].x > -40 )&& (player.y - enemy[i].y > -40) ){
-         v =8;
-    
+         v =5;
+         plyerres.play()
+
         player.reset()
-         
-      } 
+
+      }
     else
 
     for(var t  = 0; t < food.length; t++){
 
-    if ((enemy[i].x  - food[t].x  < 30 )&& (enemy[i].y  - food[t].y < 10) && (enemy[i].x - food[t].x > -20 )&& (enemy[i].y - food[t].y > -20) ){  
-     
-           eat = 2;
-           food.splice(food[t],1);  
+    if ((enemy[i].x  - food[t].x  < 30 )&& (enemy[i].y  - food[t].y < 10) && (enemy[i].x - food[t].x > -20 )&& (enemy[i].y - food[t].y > -20) ){
+           lbite.play()
+           eat = 1;
+           food.splice(food[t],1);
 
      }
     else
-    if ((player.x  - food[t].x  < 40 )&& (player.y  - food[t].y < 40) && (player.x - food[t].x > -40 )&& (player.y - food[t].y > -20) ){  
+    if ((player.x  - food[t].x  < 40 )&& (player.y  - food[t].y < 40) && (player.x - food[t].x > -40 )&& (player.y - food[t].y > -20) ){
       d =9;
-            food.splice(food[t],1);  
+            plyerbit.play()
+            food.splice(food[t],1);
            if (food.length <3){
               createFoods(6);
                }
 
 }
  if (food.length < 1){
+              var w = "GET READY TO STARVE";
+          document.getElementById("mymsg").value = w;
+                clearInterval(timer)
+                clearTimeout();
                 gameOver();
 
-  
   }
  }
   }
 
 
 }
+
 // Game over
 function gameOver() {
     document.getElementById('game-over').style.display = 'block';
     document.getElementById('game-over-overlay').style.display = 'block';
+        isGameOver = true;
 
-    isGameOver = true;
     allEnemies=[];
     allFoods=[];
-  
+
 }
 // Game Win
 function gameWin() {
     document.getElementById('game-win').style.display = 'block';
     document.getElementById('game-win-overlay').style.display = 'block';
+      var w = "WHO'S' YOUR DADDY";
+          document.getElementById("mymsg1").value = w;
     isGameWin = true;
     allEnemies=[];
     allFoods=[]
-     
- 
+
+
 }
 
 

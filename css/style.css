@@ -2,7 +2,15 @@ body {
     text-align: center;
     background: black;
      }
+.startfont{
+     font-size: 3em;
+    font-family: sans-serif;
+  text-align: center;
+    color: white;
+};
+bg1{background:green;
 
+}
 #game-over, #game-over-overlay {
     margin: auto;
     width: 910px;
@@ -36,7 +44,7 @@ body {
     font-size: 1.5em;
 }
 #status{
-	
+
 	font-size: 20px;
 	text-align:right;
 	color: red;
@@ -48,6 +56,7 @@ body {
 	text-align:center;
 	color: red;
 }
+
 
 #myMeter {
   width: 200px;
@@ -84,4 +93,70 @@ body {
 
 #game-win button {
     font-size: 1.5em;
+}
+#mymsg{
+     font-size: 40px;
+    font-family: sans-serif
+    text-align: center;
+    border: 0;
+    background:transparent;
+    font-weight: bolder;
+    color: blue;
+}
+#mymsg1{
+     font-size: 50px;
+    font-family: sans-serif
+    text-align: center;
+    border: 0;
+    background:transparent;
+    font-weight: bolder;
+    color: orange;
+}
+/*http://codepen.io/pstenstrm/pen/yKJoe*/
+a {
+  -moz-animation-duration: 400ms;
+  -moz-animation-name: blink;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-direction: alternate;
+
+  -webkit-animation-duration: 400ms;
+  -webkit-animation-name: blink;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+
+  animation-duration: 400ms;
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@-moz-keyframes blink {
+  from {
+    opacity: 1;
+
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes blink {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }

@@ -24,6 +24,11 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
+        /*soundEfx = new Audio("sounds/background.mp3"),
+        gover= new Audio("sounds/game-over.wav"),
+        lbite =new Audio("sounds/monster-bite.wav"),
+        plyerres =new Audio("sounds/player-reset.wav"),
+        plyerbit = new Audio("sounds/player-bite.wav");*/
 
     canvas.width = 605;
     canvas.height = 706;
@@ -61,6 +66,7 @@ var Engine = (function(global) {
         win.requestAnimationFrame(main);
     };
 
+
     /* This function does some initial setup that should only occur once,
      * particularly setting the lastTime variable that is required for the
      * game loop.
@@ -75,6 +81,7 @@ var Engine = (function(global) {
 
     }
 
+  
     /* This function is called by main (our game loop) and itself calls all
      * of the functions which may need to update entity's data. Based on how
      * you implement your collision detection (when two entities occupy the
@@ -263,7 +270,7 @@ function renderOneImages() {
     isGameOver = false;
     isGameWin = false;
     gameTime = 0;
-    myMeter.value = 30;
+    myMeter.value = 90;
     countDown(60,"status");
     createFoods(6);
     player.reset();
