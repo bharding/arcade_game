@@ -1,41 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Effective JavaScript: Frogger</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/sprites.css">
 
+ <link rel="stylesheet" href="css/style.css">
+<title>Frogger Transformation</title> <!--Introduction Page -->
 </head>
 <body>
-	<div id="game-over-overlay">
-    </div>
+	<div  class="bgimg"> <!--background image -->
+		<div class = "txtf">
+			<p>IN A FAR AWAY LAND LIVED A YOUNG KING;<br />ONE DAY A WITCH CASTED A SPELL ON HIM,<br />
+			WHICH OF COURSE, TURNED HIM INTO A FROG AND PLACED IN A DESERTED  DRY SWAMP AWAY FROM HIS PALACE.<br /> HE LIVED IN THIS CONDITION FOR MONTHS.....<br />  BUT TOAY THERE IS HOPE THE SUN FINALLY APPEAR AND LIFE BEGAN TO GROW  THIS IS HIS CHANCE TO BREAK THE SPELL .....<br /> HELP HIM EAT ALL THE BEES HE CAN SO HE CAN EXCAPE!!!<br /></p>
+		</div>
 
-    <div id="game-over">
-      <h1>GAME OVER</h1>
-      <h2><a href="#"><textarea type="text"  id="mymsg"></textarea></a></h2>
-      <button id="play-again">Play Again</button>
-    </div>
-    <div id="game-win-overlay">
-    </div>
+		<div class = "insttxt">
+			<h1> INSTRUCTIONS</h1>
+			<p> HELP THE FROG EAT ALL THE BEES<br /> FILL THE METER TO 100%<br /> BEAT THE TIMER<br /><br />FEED THE METER BY FROG EATING THE BEES. <br /><br />IF FROG COLLIDES WITH LIZARD METER LOOSES ENERGY <br />LOOSING ENERY MEANS FROG IS GETTING TO WEAK TO CONTINUE<br /><br />IF LIZARD EAT ALL BEES FROG STARVES TO DEATH, EVERY BEE EATEN BY LIZARD REDUCES FROG'S METER<br /><br />THIS TASK MUST BE DOWN IN 60 SECONDS<br /><br />GOOD LUCK<br />
+		</div>
+		<div  >
 
-    <div id="game-win">
-      <h1>GAME WINNER</h1>
-      <h2><a href="#"><textarea type="text"  id="mymsg1"></textarea></a></h2>
-      <button id="play-again">Play Again</button>
-    </div>
-	 <div>
-	 	<meter min="0"   max="100" value="90" id="myMeter" ></meter>
-	 	<span id = "status"> </span>  </div>
+			<button  id ="button1" onclick="location.href='frogger.html'">PLAY GAME</button>
+		</div>
+	</div>
 
 
 
-    <canvas> id= "canvas"   style="display: none;"</canvas>
 
-	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="js/resources.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/engine.js"></script>
-    <meta name="viewport" content="width=device-width">
 
-</body>
-</html>
+
+
+
+	</body>
+	</html>

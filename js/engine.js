@@ -32,6 +32,7 @@ var Engine = (function(global) {
 
     canvas.width = 605;
     canvas.height = 706;
+    
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -53,8 +54,8 @@ var Engine = (function(global) {
         update(dt);
         render();
         /*setTime();*/
-       
-              
+
+
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
          */
@@ -76,12 +77,13 @@ var Engine = (function(global) {
          document.getElementById('play-again').addEventListener('click', function() {
         reset();
     });
+ 
         lastTime = Date.now();
         main();
 
     }
 
-  
+
     /* This function is called by main (our game loop) and itself calls all
      * of the functions which may need to update entity's data. Based on how
      * you implement your collision detection (when two entities occupy the
@@ -94,7 +96,7 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         isColliding(allEnemies, player, allFoods);
-      
+
     }
 
     /* This is called by the update function  and loops through all of the
@@ -105,7 +107,7 @@ var Engine = (function(global) {
      * render methods.
      */
 
-    
+
 
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
@@ -115,10 +117,10 @@ var Engine = (function(global) {
         allFoods.forEach(function(food) {
             food.update(dt);
         });
-     
+
     }
-    
-    
+
+
 
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every
@@ -130,19 +132,19 @@ var Engine = (function(global) {
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.
          */
-     
+
          renderOneImages()
         var rowImages = [
-             
+
                 'images/grass.png',   // Row 1 of 4 of stone
                 'images/grass.png',   // Row 2 of 4 of stone
                 'images/grass.png',   // Row 3 of 4 of stone
                 'images/grass.png',   // Row 4 of 4 of stone
                 'images/grass.png'   // Row 4 of 4 of stone
-         
+
             ],
 
-        
+
             numRows = 5,
             numCols = 4,
             row, col;
@@ -152,7 +154,7 @@ var Engine = (function(global) {
          * portion of the "grid"
          */
 
-         
+
         for (row = 0; row < numRows; row++) {
             for (col = 0; col < numCols; col++) {
                 /* The drawImage function of the canvas' context element
@@ -166,7 +168,7 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]),0,105,col * 251, row * 100);
             }
         }
-        
+
         renderTwoImages()
         renderEntities();
 
@@ -178,10 +180,10 @@ function renderOneImages() {
         var rowOneImages = [
                 'images/water.png',   // Top row is water
                 'images/mud.png',
-                
+
             ],
 
-        
+
             numRows = 2,
             numCols = 1,
             row, col;
@@ -191,7 +193,7 @@ function renderOneImages() {
          * portion of the "grid"
          */
 
-         
+
         for (row = 0; row < numRows; row++) {
             for (col = 0; col < numCols; col++) {
                 /* The drawImage function of the canvas' context element
@@ -204,7 +206,7 @@ function renderOneImages() {
                 ctx.drawImage(Resources.get(rowOneImages[row]), 0, 40, 650, 180);
             }
         }
-        
+
     }
 
     function renderTwoImages() {
@@ -213,7 +215,7 @@ function renderOneImages() {
             'images/mud.png'    // Row 2 of 2 of grass
             ],
 
-        
+
             numRows = 2,
             numCols = 1,
             row, col;
@@ -223,7 +225,7 @@ function renderOneImages() {
          * portion of the "grid"
          */
 
-         
+
         for (row = 0; row < numRows; row++) {
             for (col = 0; col < numCols; col++) {
                 /* The drawImage function of the canvas' context element
@@ -236,7 +238,7 @@ function renderOneImages() {
                 ctx.drawImage(Resources.get(rowTwoImages[row]), 0,400 , 680, 180);
             }
         }
-        
+
     }
     /* This function is called by the render function and is called on each game
      * tick. It's purpose is to then call the render functions you have defined
@@ -271,12 +273,12 @@ function renderOneImages() {
     isGameWin = false;
     gameTime = 0;
     myMeter.value = 90;
-    countDown(60,"status");
+    countDown(10,"status");
     createFoods(6);
     player.reset();
     createEnemies(6);
 
-  
+
 
     }
 
@@ -285,7 +287,6 @@ function renderOneImages() {
      * all of these images are properly loaded our game will start.
      */
     Resources.load([
-        'images/enemy-bug.png',
         'images/char-boy.png',
         'images/frog.png',
         'images/bee.png',
@@ -294,7 +295,8 @@ function renderOneImages() {
         'images/mud.png',
         'images/water.png',
         'images/sprites.png',
-        'images/char-princess-girl.png'
+        
+    
     ]);
     Resources.onReady(init);
 

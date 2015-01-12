@@ -2,118 +2,164 @@ body {
     text-align: center;
     background: black;
      }
-.startfont{
-     font-size: 3em;
-    font-family: sans-serif;
-  text-align: center;
-    color: white;
-};
-bg1{background:green;
 
-}
+
+#button1{
+    position: absolute;
+    left: 40%;
+    right: 60%;
+    bottom: 5%;
+    width: 120px;
+    height: 50px;
+    background: #E000E0;
+    color:#FFCC00;
+    font-size: 16px;
+    font-weight: bolder;
+    }
+
+#play-again{width: 120px;
+    height: 50px;
+    background: #E000E0;
+    color:#FFCC00;
+    font-size: 16px;
+  font-weight: bolder;
+  }
+
+
 #game-over, #game-over-overlay {
     margin: auto;
-    width: 910px;
-    height: 706px;
+    width: 605px;
+    height: 491px;
     position: absolute;
-    top: 0;
-    left: 299px;
+    top: 80px;
+    left: 305px;
     right: 0;
     bottom: 0;
     z-index: 1;
     display: none;
-}
+  }
 
 #game-over-overlay {
     background-color: black;
     opacity: .5;
-}
+  }
 
 #game-over {
-    height: 200px;
+    height: 380px;
     text-align: center;
     color: white;
-}
+  }
 
 #game-over h1 {
     font-size: 3em;
     font-family: sans-serif;
-}
+  }
 
 #game-over button {
     font-size: 1.5em;
-}
-#status{
+  }
+#status{   /*countdown   */
 
 	font-size: 20px;
 	text-align:right;
 	color: red;
-}
 
-
+  }
 #secondstxt{
-		font-size: 20px;
-	text-align:center;
-	color: red;
-}
-
-
-#myMeter {
-  width: 200px;
-  height: 40px;
-}
-#game-win, #game-win-overlay {
-    margin: auto;
-    width: 910px;
-    height: 706px;
-    position: absolute;
-    top: 0;
+    font-size: 20px;
+    text-align:center;
+    color: red;
+  }
+.bgimg {  /* background image of index page */
+    background-image: url("../images/swmp.jpg");
+    height: 600px;
+    width:900px;
     left: 299px;
+    position: absolute;
+  }
+.txtf { /* formatting for intro on index*/
+    position: absolute;
+    font-size: 15px;
+    margin-top:15px;
+    text-align:center;
+    color: orange;
+  }
+
+.insttxt{ /* formatting for instruction on index*/
+    position:absolute;
+    font-size: 15px;
+    text-align:center;
+    color: pink;
+    margin-top:180px;
+  }
+.con{  
+    position:absolute;
+    font-size: 25px;
+    left: 230px;
+    color: yellow;
+    margin-top:500px;
+  }
+#myMeter {  /* format the meter(lifeline) */
+    width: 250px;
+    height: 40px;
+    margin-left: 250px;
+  }
+  #game-win, #game-win-overlay {
+    margin: auto;
+    width: 605px;
+    height: 491px;
+    position: absolute;
+    top: 80px;
+    left: 305px;
     right: 0;
     bottom: 0;
     z-index: 1;
     display: none;
-}
+  }
 
 #game-win-overlay {
     background-color: black;
     opacity: .5;
-}
+  }
 
 #game-win {
-    height: 200px;
+    height: 380px;
     text-align: center;
     color: white;
-}
+  }
 
 #game-win h1 {
     font-size: 3em;
     font-family: sans-serif;
-}
-
+  }
 #game-win button {
     font-size: 1.5em;
-}
-#mymsg{
-     font-size: 40px;
-    font-family: sans-serif
+  }
+
+#mymsg{    /* format for game over */
+     font-size: 30px;
+    font-family: sans-serif;
     text-align: center;
-    border: 0;
+    width:500px;
+    margin-left: 100px
+    border:0;
     background:transparent;
     font-weight: bolder;
     color: blue;
-}
-#mymsg1{
-     font-size: 50px;
-    font-family: sans-serif
+  }
+#mymsg1{    /* format for game win*/
+     font-size: 40px;
+    font-family: sans-serif;
     text-align: center;
+    width:500px;
+    margin-left: 100px;
     border: 0;
     background:transparent;
     font-weight: bolder;
     color: orange;
-}
+  }
 /*http://codepen.io/pstenstrm/pen/yKJoe*/
-a {
+b {
   -moz-animation-duration: 400ms;
   -moz-animation-name: blink;
   -moz-animation-iteration-count: infinite;
@@ -128,7 +174,7 @@ a {
   animation-name: blink;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-}
+  }
 
 @-moz-keyframes blink {
   from {
@@ -144,11 +190,11 @@ a {
 @-webkit-keyframes blink {
   from {
     opacity: 1;
-  }
+    }
 
   to {
     opacity: 0;
-  }
+    }
 }
 
 @keyframes blink {
