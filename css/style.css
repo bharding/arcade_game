@@ -1,10 +1,7 @@
 body {
     text-align: center;
-    background: black;
      }
-
-
-#button1{
+#button1{  /* button style on the index.html  */
     position: absolute;
     left: 40%;
     right: 60%;
@@ -16,7 +13,7 @@ body {
     font-size: 16px;
     font-weight: bolder;
     }
-
+/* style for the play again button */
 #play-again{width: 120px;
     height: 50px;
     background: #E000E0;
@@ -25,7 +22,7 @@ body {
   font-weight: bolder;
   }
 
-
+/* create a game-over overlay  thnx http://stackoverflow.com/questions/24565172/why-is-this-index-html-not-displaying-the-game-on-my-desk-top*/
 #game-over, #game-over-overlay {
     margin: auto;
     width: 605px;
@@ -141,7 +138,7 @@ body {
     font-family: sans-serif;
     text-align: center;
     width:500px;
-    margin-left: 100px
+    margin-left: 100px;
     border:0;
     background:transparent;
     font-weight: bolder;
@@ -159,7 +156,7 @@ body {
     color: orange;
   }
 /*http://codepen.io/pstenstrm/pen/yKJoe*/
-b {
+a {
   -moz-animation-duration: 400ms;
   -moz-animation-name: blink;
   -moz-animation-iteration-count: infinite;

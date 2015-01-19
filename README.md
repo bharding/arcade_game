@@ -2,19 +2,13 @@ arcade_game
 ===========
 
 Project three arcade game 
+ 
+CLICK ON THE INDEX.HTML TO RUN THE PROGRAM
 
-THE OBJECT OF THE GAME IS FOR THE FROG TO EAT AS MANY  BEES TO FILLS UP THE METER BAR 100%!
-USE THE ARROW KEYS TO MOVE THE FROG AROUND THE SCREEN.
+There are two html files; index is the initial load,  it has the instruction on how to play the game and button to load the second file frogger. Frogger is where the game is actually played.
 
-THE FOLLOWING DECREASE THE METER BAR
-IF THE FLYING LIZARDS HIT THE FROG THE METER DECREASES AND REPOSITIONS THE FROG.
-IF THE FLYING LIZARDS EAT THE BEES THE METER DECREASES AND REDUCES NUMBER OF BEES ON SCREEN
-IF THE FLYING LIZARDS EAT THE LAST BEE BEFORE THE METER GETS TO 100% THE GAME IS OVER
-
-THE FROG MUST EAT THE BEES TO INCREASE THE METER.
-IF THERE ARE LESS THAN THREE BEES ON THE SCREEN AND THE FROG EATS ONE, IT ALLOWS FOR 6 MORE BEES TO APPEAR
-THE FROG MUST AVOID THE FLYING LIZARDS
-IF THE FROG GETS THE METER TO 100% THEN HE IS A WINNER
-
-IF THE TIMER GETS TO 0 BEFORE THE METER IS AT 100% THE GAME IS OVER.
+There are two css files  sytles which holds on the styles declaration for the game. Sprites.css holds the images of the player
+The image folder holds 12 images
+The sound folder hold 5 tracks which are called by the javascript
+The js folder has 3 files; the apps, engine and resources
 

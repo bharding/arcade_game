@@ -1,24 +1,28 @@
+
+/*global Audio: false */
 // sounds tracks
-var gameover= new Audio("sounds/game-over.wav"),
-        lbite =new Audio("sounds/monster-bite.wav"),
-        playerreset =new Audio("sounds/player-reset.wav"),
-        playerbite = new Audio("sounds/player-bite.wav"),
-        gamewin = new Audio("sounds/win.wav");
+var gameover = new Audio("sounds/game-over.wav");
+var lbite = new Audio("sounds/monster-bite.wav");
+var playerreset = new Audio("sounds/player-reset.wav");
+var playerbite = new Audio("sounds/player-bite.wav");
+var gamewin = new Audio("sounds/win.wav");
 
 var enemyPosY = [65, 145, 267];
 var enemySpeed = [60, 325, 600, 200, 250, 100, 400];
-var playerS ='images/sprites.png'
-var prince = 'images/char-boy.png'     //char-boy.png'
-var Enemy = function() {
+var playerS = 'images/sprites.png';
+var prince = 'images/char-boy.png';    //char-boy.png'
+
+var Enemy = function () {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
+   // "use strict";
     this.sprite = 'images/lizard.png';
     this.x = -300;
     this.y = enemyPosY[Math.floor(Math.random() * 3)];
-    this.speed = enemySpeed[Math.floor(Math.random() * 7)];;
-  }
+    this.speed = enemySpeed[Math.floor(Math.random() * 7)];
+}
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -229,7 +233,7 @@ function meters(){
           var msgoutput = "OUT OF ENERGY";
           document.getElementById("mymsg").value = msgoutput;
             gameOver();
-            clearTimeout(timersID);
+            clearTimeout(timers);
             clearInterval(timer);}
         if (meter.value>99){
             clearInterval(timer);
@@ -257,7 +261,7 @@ function countDown(secs, elem, myMeter) {
     secs--;
     timers = setTimeout('countDown('+secs+' ,"'+elem+'")', 1000);  
   }
-countDown(10,"status", myMeter);
+countDown(45,"status", myMeter);
 
 function stopTimer()    
     {  
@@ -316,7 +320,7 @@ function gameOver() {
     document.getElementById('game-over').style.display = 'block';
     document.getElementById('game-over-overlay').style.display = 'block';
         isGameOver = true; 
-        gameover.play()            
+        gameover.play();           
     allEnemies=[];
     allFoods=[];
 
@@ -328,8 +332,7 @@ function gameWin() {
       var msgoutput = "YOU DID IT";
       document.getElementById("mymsg1").value = msgoutput;
     isGameWin = true;  
-
-    gamewin.play()           
+    gamewin.play();          
     allEnemies=[];
     allFoods=[];
 
