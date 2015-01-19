@@ -1,0 +1,205 @@
+body {
+    text-align: center;
+     }
+#button1{  /* button style on the index.html  */
+    position: absolute;
+    left: 40%;
+    right: 60%;
+    bottom: 5%;
+    width: 120px;
+    height: 50px;
+    background: #E000E0;
+    color:#FFCC00;
+    font-size: 16px;
+    font-weight: bolder;
+    }
+/* style for the play again button */
+#play-again{width: 120px;
+    height: 50px;
+    background: #E000E0;
+    color:#FFCC00;
+    font-size: 16px;
+  font-weight: bolder;
+  }
+
+/* create a game-over overlay  thnx http://stackoverflow.com/questions/24565172/why-is-this-index-html-not-displaying-the-game-on-my-desk-top*/
+#game-over, #game-over-overlay {
+    margin: auto;
+    width: 605px;
+    height: 491px;
+    position: absolute;
+    top: 80px;
+    left: 305px;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: none;
+  }
+
+#game-over-overlay {
+    background-color: black;
+    opacity: .5;
+  }
+
+#game-over {
+    height: 380px;
+    text-align: center;
+    color: white;
+  }
+
+#game-over h1 {
+    font-size: 3em;
+    font-family: sans-serif;
+  }
+
+#game-over button {
+    font-size: 1.5em;
+  }
+#status{   /*countdown   */
+
+	font-size: 20px;
+	text-align:right;
+	color: red;
+
+  }
+#secondstxt{
+    font-size: 20px;
+    text-align:center;
+    color: red;
+  }
+.bgimg {  /* background image of index page */
+    background-image: url("../images/swmp.jpg");
+    height: 600px;
+    width:900px;
+    left: 299px;
+    position: absolute;
+  }
+.txtf { /* formatting for intro on index*/
+    position: absolute;
+    font-size: 15px;
+    margin-top:15px;
+    text-align:center;
+    color: orange;
+  }
+
+.insttxt{ /* formatting for instruction on index*/
+    position:absolute;
+    font-size: 15px;
+    text-align:center;
+    color: pink;
+    margin-top:180px;
+  }
+.con{  
+    position:absolute;
+    font-size: 25px;
+    left: 230px;
+    color: yellow;
+    margin-top:500px;
+  }
+#myMeter {  /* format the meter(lifeline) */
+    width: 250px;
+    height: 40px;
+    margin-left: 250px;
+  }
+  #game-win, #game-win-overlay {
+    margin: auto;
+    width: 605px;
+    height: 491px;
+    position: absolute;
+    top: 80px;
+    left: 305px;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: none;
+  }
+
+#game-win-overlay {
+    background-color: black;
+    opacity: .5;
+  }
+
+#game-win {
+    height: 380px;
+    text-align: center;
+    color: white;
+  }
+
+#game-win h1 {
+    font-size: 3em;
+    font-family: sans-serif;
+  }
+#game-win button {
+    font-size: 1.5em;
+  }
+
+#mymsg{    /* format for game over */
+     font-size: 30px;
+    font-family: sans-serif;
+    text-align: center;
+    width:500px;
+    margin-left: 100px;
+    border:0;
+    background:transparent;
+    font-weight: bolder;
+    color: blue;
+  }
+#mymsg1{    /* format for game win*/
+     font-size: 40px;
+    font-family: sans-serif;
+    text-align: center;
+    width:500px;
+    margin-left: 100px;
+    border: 0;
+    background:transparent;
+    font-weight: bolder;
+    color: orange;
+  }
+/*http://codepen.io/pstenstrm/pen/yKJoe*/
+a {
+  -moz-animation-duration: 400ms;
+  -moz-animation-name: blink;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-direction: alternate;
+
+  -webkit-animation-duration: 400ms;
+  -webkit-animation-name: blink;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+
+  animation-duration: 400ms;
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  }
+
+@-moz-keyframes blink {
+  from {
+    opacity: 1;
+
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes blink {
+  from {
+    opacity: 1;
+    }
+
+  to {
+    opacity: 0;
+    }
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

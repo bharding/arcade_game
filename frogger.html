@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Effective JavaScript: Frogger</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sprites.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+      <meta name="viewport" content="width=device-width">
+</head>
+<body style="background-color:black">
+<!--   the game over screen -->
+  <div id="game-over-overlay"></div>
+
+  <div id="game-over">
+    <h1>GAME OVER</h1>
+    <h2><a href="#"><textarea type="text"  id="mymsg"></textarea></a></h2>
+  </div>
+
+<!--   the game win screen -->      
+  <div id="game-win-overlay"></div>
+
+  <div id="game-win">
+    <h1>GAME WINNER</h1>
+    <h2><a href="#"><textarea type="text"  id="mymsg1"></textarea></a></h2>
+  </div>
+
+<!--   places the meter the timer and restart button ontop -->      
+  <div>
+    <br /><br />     
+    <meter min="0"   max="100" value="30" id="myMeter" ></meter> <!--the life line --> 
+   &nbsp;&nbsp;&nbsp;
+    <span id = "status"></span>  <!--the timer -->
+    &nbsp;&nbsp;&nbsp;
+    <button id="play-again">Play Again</button>
+  </div> <!--restarts the game -->
+
+    <canvas> id= "canvas"   style="display: none;"</canvas> <!--the game -->
+
+	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+	<script src="js/resources.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/engine.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+.frog, .frog-right, .frog-down, .frog-left{
+	background: url(sprites.png) no-repeat;
+}
+
+.frog{
+	background-position: -1px 0;
+	width: 75px;
+	height: 78px;
+}
+
+.frog-right{
+	background-position: -102px 0;
+	width: 75px;
+	height: 78px;
+}
+
+.frog-down{
+	background-position: -201px 0;
+	width: 75px;
+	height: 78px;
+}
+
+.frog-left{
+	background-position: -299px 0;
+	width: 75px;
+	height: 78px;
+}
+
